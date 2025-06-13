@@ -1,0 +1,73 @@
+.wrapper {
+  width: 90%;
+  margin: 100px 5% 0 5%;
+}
+
+//.dashboard-container {
+//  padding: 1rem;
+//}
+
+.project-list {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+}
+
+canvas {
+  margin-top: 2rem;
+  max-width: 500px;
+}
+
+.dashboard-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+  row-gap: 50px;
+}
+
+.dashboard-card {
+  height: 90%;
+}
+
+.dashboard-time {
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.dashboard-time label {
+  font-weight: 700;
+
+}
+
+.dashboard-time input {
+  padding: 2px 4px 2px 4px;
+  gap: 8px;
+  //color: #6da9fd;
+  font-weight: 400;
+  font-size: 18px;
+  //background: #030233;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  align-self: flex-start;
+
+}
+
+
+.dashboard-time button {
+    padding: 2px 4px 2px 4px;
+    gap: 8px;
+    color: #6da9fd;
+    font-weight: 400;
+    font-size: 18px;
+    background: #030233;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    align-self: flex-start;
+    cursor: pointer;
+
+}

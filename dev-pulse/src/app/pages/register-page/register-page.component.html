@@ -1,0 +1,71 @@
+<form
+  class="login-form"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()">
+  <h1>Login</h1>
+
+  <label class="login-label">
+    Email
+    <div *ngIf="form.get('email')?.hasError('email') && formSubmitted" class="error">
+      Invalid email format
+    </div>
+    <div *ngIf="form.get('email')?.errors?.['required'] && formSubmitted" class="error">
+      Email is required
+    </div>
+    <input
+      formControlName="email" class="login-input-email" type="text" placeholder="Enter login">
+  </label>
+
+  <label class="login-label">
+    Atlassian Jira Email
+    <div *ngIf="form.get('jiraEmail')?.hasError('email') && formSubmitted" class="error">
+      Invalid email format
+    </div>
+    <div *ngIf="form.get('jiraEmail')?.errors?.['required'] && formSubmitted" class="error">
+      Email is required
+    </div>
+    <input
+      formControlName="jiraEmail" class="login-input-email" type="text" placeholder="Enter jira">
+  </label>
+
+  <label class="login-label">
+    First Name
+    <div *ngIf="form.get('firstName')?.errors?.['required'] && formSubmitted" class="error">
+      First name is required
+    </div>
+
+    <div *ngIf="form.get('firstName')?.errors?.['minlength'] && formSubmitted" class="error">
+      First name must be at least 3 characters
+    </div>
+    <input
+      formControlName="firstName" class="login-input-email" type="text" placeholder="Enter firstname">
+  </label>
+
+  <label class="login-label">
+    Last Name
+    <div *ngIf="form.get('lastName')?.errors?.['required'] && formSubmitted" class="error">
+      Last name is required
+    </div>
+
+    <div *ngIf="form.get('lastName')?.errors?.['minlength'] && formSubmitted" class="error">
+      Last name must be at least 3 characters
+    </div>
+    <input
+      formControlName="lastName" class="login-input-email" type="text" placeholder="Enter lastname">
+  </label>
+
+  <label class="login-label">
+    Password
+    <div *ngIf="form.get('password')?.errors?.['required'] && formSubmitted" class="error">
+      Password is required
+    </div>
+
+    <div *ngIf="form.get('password')?.errors?.['minlength'] && formSubmitted" class="error">
+      Password must be at least 4 characters
+    </div>
+    <input
+      formControlName="password" class="login-input-pass" type="password" placeholder="Enter password">
+  </label>
+
+  <button type="submit" class="login-form-btn">Register</button>
+</form>

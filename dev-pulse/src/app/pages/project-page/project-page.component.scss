@@ -1,0 +1,80 @@
+.wrapper {
+  margin-top: 120px;
+  width: 90%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.wrapper h1 {
+  text-align: center;
+}
+
+.issue-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1%;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.controls input {
+  font-size: 20px;
+  height: 40px;
+  border-radius: 6px;
+  padding-left: 5px;
+}
+
+.sort-buttons {
+  margin-bottom: 25px;
+}
+
+.sort-buttons button {
+  font-size: 20px;
+  height: 40px;
+  border-radius: 6px;
+  margin: 10px 5px;
+  cursor: pointer;
+}
+
+.issue-card {
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  color: #030233;
+  border: 1px solid #030233;
+  font-weight: 400;
+  background: #89b8ff;
+  cursor: pointer;
+}
+
+.issue-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.issue-header span {
+  font-size: 18px;
+}
+
+.issue-status {
+  padding: 0.2rem 0.6rem;
+  border-radius: 5px;
+  color: white;
+}
+
+.status-done {
+  background-color: #28a745;
+}
+
+.status-in-progress {
+  background-color: #ffc107;
+  color: black;
+}
+
+.status-to-do {
+  background-color: #6c757d;
+}

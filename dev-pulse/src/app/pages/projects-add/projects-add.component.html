@@ -1,0 +1,32 @@
+<form
+  class="login-form"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()">
+  <h1>Add project</h1>
+
+  <label class="login-label">
+    Project Name
+    <input
+      formControlName="name" class="login-input-email" type="text" placeholder="Enter name">
+  </label>
+
+  <label class="login-label">
+    Server Url
+    <input
+      formControlName="projectUrl" class="login-input-email" type="text" placeholder="Enter server url">
+  </label>
+
+  <button type="submit" class="login-form-btn">Save</button>
+</form>
+<div class="project_description">
+  <p>
+    Give name to project is all on your decision
+  </p>
+  Server Url shoudl be :
+  <div style="    display: flex;
+    align-items: baseline;">
+    https://
+    <p class="project_description_link">"testdevpulse"</p>
+    .atlassian.net
+  </div>
+</div>

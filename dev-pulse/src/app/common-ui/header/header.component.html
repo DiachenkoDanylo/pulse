@@ -1,0 +1,27 @@
+<div class="header">
+  <nav>
+    <img src="/images/logo66.png" width="66" height="72">
+    <ul>
+      <li>
+        <div class="header-button" [routerLink]="'/cabinet'">
+          Cabinet
+        </div>
+      </li>
+      <li>
+        <div class="header-button" [routerLink]="'/projects'">
+          Projects
+        </div>
+      </li>
+      <li>
+        <div *ngIf="!authService.isAuth" class="header-button" [routerLink]="'/login'">
+          Login
+        </div>
+
+        <div *ngIf="authService.isAuth" class="header-button" (click)="logout()">
+          Logout
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+</div>

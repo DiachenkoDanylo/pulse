@@ -1,0 +1,47 @@
+.profile-card {
+  border: 1px solid #030233;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 25px;
+  border-radius: 8px;
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+}
+
+.profile-card_avatar {
+  height: 120px;
+  border-radius: 8px;
+  border: 1px solid #030233;
+}
+
+.profile-card_server__list {
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.1);
+  margin-top: 25px;
+  border-radius: 8px;
+  border: 1px solid #030233;
+  padding: 20px;
+  display: grid;
+  grid-gap: 25px;
+}
+
+.profile-card_server__list h2 {
+  margin: 0;
+}
+.profile-card_server_ {
+
+}
+
+.profile-card_fullname {
+}
+
+.profile-card_email {
+}
+
+.profile-card_jira__email {
+}
+
+.profile-card_projects {
+}

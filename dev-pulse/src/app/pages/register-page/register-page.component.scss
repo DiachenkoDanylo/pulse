@@ -1,0 +1,54 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100dvh;
+  align-items: center;
+  margin: 0 5%;
+}
+
+.login-form {
+  width: 100%;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.login-label {
+  margin-top: 5px;
+  width: 100%;
+  font-size: 18px;
+  display: block;
+}
+
+.login-input-email {
+  width: 100%;
+  margin-top: 4px;
+  border: 2px black;
+  border-radius: 4px;
+  background-color: #dbe6ff;
+  padding: 10px 0 10px 0;
+  display: block;
+}
+
+.login-input-pass {
+  width: 100%;
+  margin-top: 4px;
+  border: 2px black;
+  border-radius: 4px;
+  background-color: #dbe6ff;
+  padding: 10px 0 10px 0;
+  display: block;
+}
+
+.login-form-btn {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  cursor: pointer;
+  background-color: #044fbf;
+  color: white;
+}

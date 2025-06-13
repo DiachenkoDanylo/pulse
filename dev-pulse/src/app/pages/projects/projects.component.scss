@@ -1,0 +1,98 @@
+.wrapper {
+  width: 90%;
+  margin: 100px 5% 0 5%;
+}
+
+.project-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.project-card {
+  border-radius: 8px;
+  border: 1px solid #030233;
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 25px;
+}
+
+.project-card_jira__chart {
+  width: 100%;
+  min-width: 70px;
+  max-width: 70px;
+}
+
+.project-card_jira__chart img {
+  width: 100%;
+}
+.project-card_value {
+
+}
+
+.project-card_value__name {
+
+}
+
+.project-card_value__name p {
+  font-size: 26px;
+}
+
+.project-card_value__name strong {
+  font-size: 22px;
+  font-weight: 700;
+  color: #5797f3;
+}
+
+.project-card_list {
+  display: grid;
+  align-items: center;
+  grid-gap: 15px;
+}
+
+.project-card_jira {
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 8px;
+  color: #030233;
+  font-weight: 400;
+  background: #89b8ff;
+
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  align-self: flex-start;
+  cursor: pointer;
+  border: 1px solid #030233;
+  padding: 12px;
+  display: flex;
+  grid-gap: 15px;
+}
+
+.project-card_jira strong {
+  font-size: 22px;
+  font-weight: 700;
+  color: #030233;
+}
+
+.project-card_jira p {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.project-card_button {
+  font-size: 45px;
+  text-align: center;
+  font-weight: 700;
+  width: 100px;
+  height: 60px;
+  color: #030233;
+  background: #89b8ff;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  align-self: flex-start;
+  cursor: pointer;
+  border: 1px solid #030233;
+  padding: 12px;
+}

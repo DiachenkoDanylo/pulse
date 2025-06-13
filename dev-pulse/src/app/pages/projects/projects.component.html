@@ -1,0 +1,39 @@
+<div class="wrapper">
+  <H1>Projects</H1>
+  <div class="project-wrapper">
+    @for (project of projects; track project.id) {
+      <div class="project-card">
+        <div class="project-card_value">
+          <div class="project-card_value__name">
+            <strong>Server name : </strong>
+            <p> {{ project.name }}</p>
+          </div>
+          <div class="project-card_value__name">
+            <strong>Server url : </strong>
+            <p> {{ project.projectUrl }} </p>
+          </div>
+        </div>
+        <div class="project-card_list">
+          @for (jiraproject of project.jiraProjectListDto; track jiraproject.id) {
+            <div class="project-card_jira" [routerLink]="['/projects', jiraproject.key + '_' + project.id]">
+              <div class="project-card_jira__key">
+                <strong> KEY: </strong>
+                <p> {{ jiraproject.key }}</p>
+              </div>
+              <div class="project-card_jira__name">
+                <strong> Name: </strong>
+                <p> {{ jiraproject.name }}</p>
+              </div>
+              <a class="project-card_jira__chart"
+                 (click)="goToDashboard($event, jiraproject.key, project.id)">
+                <img src="/images/chart180x260.png" alt="Chart">
+              </a>
+            </div>
+          }
+        </div>
+      </div>
+    }
+    <div class="project-card_button" [routerLink]="'/projects/add'">+</div>
+  </div>
+
+</div>

@@ -1,0 +1,88 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class access_token {
+   expires_at: timestamp(6)
+   value: varchar(4096)
+   id: bigint
+}
+class app_user {
+   email: varchar(255)
+   first_name: varchar(255)
+   jira_email: varchar(255)
+   last_name: varchar(255)
+   password: varchar(255)
+   id: bigint
+}
+class jira_api_state {
+   project_id: bigint
+   value: varchar(255)
+   id: bigint
+}
+class jira_issue {
+   story_points: integer
+   assignee_id: bigint
+   created_at: timestamp(6) with time zone
+   jira_project_id: bigint
+   reporter_id: bigint
+   resolved_at: timestamp(6) with time zone
+   time_spent_seconds: bigint
+   updated_at: timestamp(6) with time zone
+   jira_issue_id: varchar(255)
+   key: varchar(255)
+   status: varchar(255)
+   summary: varchar(255)
+   type: varchar(255)
+   id: bigint
+}
+class jira_project {
+   is_private: boolean
+   jira_server_id: bigint
+   jira_project_id: varchar(255)
+   key: varchar(255)
+   name: varchar(255)
+   id: bigint
+}
+class jira_refresh_token {
+   access_token_id: bigint
+   value: varchar(4096)
+   id: bigint
+}
+class jira_server {
+   access_token_id: bigint
+   user_id: bigint
+   project_url: varchar(1000)
+   name: varchar(255)
+   project_cloud_id: varchar(255)
+   id: bigint
+}
+class jira_user {
+   jira_server_id: bigint
+   account_id: varchar(255)
+   avatar_url: varchar(255)
+   display_name: varchar(255)
+   email_address: varchar(255)
+   id: bigint
+}
+class work_log_entry {
+   created_at: timestamp(6) with time zone
+   issue_id: bigint
+   started_at: timestamp(6) with time zone
+   time_spent_seconds: bigint
+   user_id: bigint
+   jira_worklog_id: varchar(255)
+   id: bigint
+}
+
+jira_issue          -[#595959,plain]-^  jira_issue         : "jira_issue_id:id"
+jira_issue          -[#595959,plain]-^  jira_project       : "jira_project_id:id"
+jira_project        -[#595959,plain]-^  jira_project       : "jira_project_id:id"
+jira_project        -[#595959,plain]-^  jira_server        : "jira_server_id:id"
+jira_refresh_token  -[#595959,plain]-^  access_token       : "access_token_id:id"
+jira_server         -[#595959,plain]-^  access_token       : "access_token_id:id"
+jira_server         -[#595959,plain]-^  app_user           : "user_id:id"
+jira_user           -[#595959,plain]-^  jira_server        : "jira_server_id:id"
+@enduml

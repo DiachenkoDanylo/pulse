@@ -1,0 +1,24 @@
+<form
+  class="login-form"
+  [formGroup]="form"
+  (ngSubmit)="onLogin()">
+  <h1>Login</h1>
+
+  <div *ngIf="loginErrorMessage" class="error">
+    {{ loginErrorMessage }}
+  </div>
+  <label class="login-label">
+    Email
+    <input
+      formControlName="username" class="login-input-email" type="text" placeholder="Enter login">
+  </label>
+
+  <label class="login-label">
+    Password
+    <input
+      formControlName="password" class="login-input-pass" type="password" placeholder="Enter password">
+  </label>
+  <button type="submit" class="login-form-btn">Login</button>
+  <button type="button" class="login-form-btn" (click)="onRegister()">Register</button>
+</form>
+<img src="/images/logo.png">

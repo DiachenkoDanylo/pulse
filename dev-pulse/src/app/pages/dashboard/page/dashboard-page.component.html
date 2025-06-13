@@ -1,0 +1,24 @@
+<div class="wrapper">
+  <H1>Dashboard for {{ projKey }}</H1>
+  <div class="dashboard-wrapper">
+    <app-task-per-user class="dashboard-card" [data]="tasksPerUserData"></app-task-per-user>
+    <app-task-status class="dashboard-card" [data]="taskStatusDistribution"></app-task-status>
+    <div class="dashboard-card">
+      <div class="dashboard-time">
+        <label>
+          <input type="radio" name="mode" value="month" [(ngModel)]="mode"> By month
+        </label>
+        <label>
+          <input type="radio" name="mode" value="week" [(ngModel)]="mode"> By week
+        </label>
+
+        <input type="number" [(ngModel)]="numberInput" placeholder="Введіть номер місяця або тижня"/>
+
+        <button (click)="loadChart()">Create chart</button>
+        <app-task-per-time [dataMonth]="taskStatusResolveTimeMonth"
+                           [dataWeek]="taskStatusResolveTimeWeek"
+                           [mode]="mode"></app-task-per-time>
+      </div>
+    </div>
+  </div>
+</div>
