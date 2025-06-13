@@ -1,0 +1,38 @@
+﻿name: Dev-Pulse-Application
+
+volumes:
+  cache:
+    driver: local
+
+services:
+
+  database:
+    restart: always
+    image: postgres:13
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - '5433:5432'
+
+  backend-jira:
+    env_file:
+      - .env
+    restart: always
+    build:
+      dockerfile: dev_pulse_jira_service/Dockerfile
+      args:
+        JAR_FILE: dev_pulse_jira_service/target/dev_pulse_jira_service-1.0-SNAPSHOT-exec.jar
+    ports:
+      - '8080:8080'
+
+  frontend-angular:
+    build:
+      context: ./dev-pulse
+      dockerfile: Dockerfile
+    ports:
+      - '4200:80'  # зовнішній порт 4200 -> nginx порт 80
+    restart: always

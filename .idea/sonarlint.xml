@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SonarLintProjectSettings">
+    <option name="moduleMapping">
+      <map>
+        <entry key="Dev_Pulse" value="E-commerce-shop" />
+        <entry key="dev_pulse_jira_service" value="dev_pulse_backend" />
+      </map>
+    </option>
+  </component>
+</project>
