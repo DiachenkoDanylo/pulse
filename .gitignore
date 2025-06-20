@@ -26,4 +26,5 @@ replay_pid*
 /dev_pulse_jira_service/src/main/resources/application.yml
 /dev_pulse_jira_service/src/main/resources/application-docker.yml
 /.env
-/dev_pulse_github_service/src/main/resources/application.yml
+/dev_pulse_github_service/src/main/resources/application.ymle
+/.idea*
