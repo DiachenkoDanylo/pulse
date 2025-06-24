@@ -24,7 +24,6 @@ export class ProjectsAddComponent {
     if (this.form.valid) {
       //@ts-ignore
       this.projectService.addProjectToUser(this.form.value).subscribe({next: res => {
-        console.log(res)
         window.location.href = res.redirect;
       },
       error: err => {

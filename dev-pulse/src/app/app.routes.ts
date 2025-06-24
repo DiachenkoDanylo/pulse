@@ -7,10 +7,11 @@ import {canActivateAuth} from './auth/access.guard';
 import {CabinetComponent} from './pages/cabinet/cabinet.component';
 import {ProjectsComponent} from './pages/projects/projects.component';
 import {ProjectsAddComponent} from './pages/projects-add/projects-add.component';
-import {JiraCallbackComponent} from './pages/jira-callback/jira-callback.component';
+import {JiraCallbackComponent} from './data/jira-callback/jira-callback.component';
 import {ProjectPageComponent} from './pages/project-page/project-page.component';
 import {IssuePageComponent} from './pages/issue-page/issue-page.component';
 import {DashboardPageComponent} from './pages/dashboard/page/dashboard-page.component';
+import {GithubCallbackComponent} from './data/github-callback/github-callback.component';
 
 export const routes: Routes = [
   {
@@ -33,10 +34,13 @@ export const routes: Routes = [
               {path: '', component: ProjectsComponent},
               {path: 'add', component: ProjectsAddComponent},
               { path: ':composite', component: ProjectPageComponent },
-              { path: ':composite/:issueId', component: IssuePageComponent }
+              { path: ':composite/issue/:issueId', component: IssuePageComponent }
+              // { path: ':composite/team/:issueId', component: TeamPageComponent }
             ]
           },
-          {path: 'oauth/jira/code', component: JiraCallbackComponent}
+          {path: 'oauth/jira/code', component: JiraCallbackComponent},
+          {path: 'oauth/github', component: GithubCallbackComponent}
+
         ]
       }
     ]

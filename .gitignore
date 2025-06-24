@@ -28,3 +28,4 @@ replay_pid*
 /.env
 /dev_pulse_github_service/src/main/resources/application.ymle
 /.idea*
+.idea/

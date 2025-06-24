@@ -1,0 +1,38 @@
+server:
+  port: 7070
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5533/dev_pulse_db_git
+    username: postgres
+    password: diachenko
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    logging:
+      level:
+        org.hibernate.SQL: DEBUG
+        org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create  # Используем Flyway вместо JPA для создания схемы
+
+
+#tokens:
+#  secret: 85619366173242aced239ceb557d63a84695ff90
+#  clientId: Ov23li0XFGye32rI74RM
+github:
+  api:
+    #    url: https://testdevpulse.atlassian.net
+    redirect: "http://localhost:4200/oauth/github"
+    clientId: Ov23li0XFGye32rI74RM
+    secret: 85619366173242aced239ceb557d63a84695ff90
+security:
+  jwt:
+    expiration-access: 864_000_00
+    expiration-refresh: 864_000_00
+    secret-key: 3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b
+    refresh-key: 2f838b5a6c4d9876fd0151017534a55b1e3fd3444a2d40c23c455b40892a3ef9
+

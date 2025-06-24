@@ -30,7 +30,7 @@ public class AppUser {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<JiraServer> generalProjectList = new ArrayList<>();
+    private List<JiraServer> jiraServerList = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -40,7 +40,7 @@ public class AppUser {
                 ", jiraEmail='" + jiraEmail + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", generalProjectList=" + generalProjectList +
+                ", generalProjectList=" + jiraServerList +
                 '}';
     }
 }

@@ -14,14 +14,12 @@ import com.diachenko.dev_pulse_jira_service.model.JiraProject;
 import com.diachenko.dev_pulse_jira_service.model.JiraServer;
 import com.diachenko.dev_pulse_jira_service.model.JiraUser;
 import com.diachenko.dev_pulse_jira_service.repo.JiraIssueRepository;
-import com.diachenko.dev_pulse_jira_service.repo.JiraServerRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
@@ -39,22 +37,15 @@ import java.util.regex.Pattern;
 @RequiredArgsConstructor
 public class JiraService {
 
-    private final JiraServerRepository projectRepository;
     private final JiraServerService jiraServerService;
     private final JiraProjectService jiraProjectService;
     private final JiraIssueRepository jiraIssueRepository;
     private final ModelMapper modelMapper;
-    private final JiraClientService jiraClientService;
+    private final JiraApiService jiraClientService;
     private final String ACCESSIBLE_RESOURCES_URL = "https://api.atlassian.com/oauth/token/accessible-resources";
     private final JiraUserService jiraUserService;
     private final JiraIssueService jiraIssueService;
     Pattern pattern = Pattern.compile("https://(.*?)\\.atlassian\\.net");
-    @Value("${jira.api.redirect}")
-    private String redirectUrl;
-    @Value("${jira.api.secret}")
-    private String secret;
-    @Value("${jira.api.clientId}")
-    private String clientId;
 
     public String configureProjectCloudIdFromToken(Long jiraServerId) {
         JiraServer project = jiraServerService.findById(jiraServerId);
@@ -158,6 +149,7 @@ public class JiraService {
         }.getType());
 
         users = users.stream().peek(x -> x.setJiraServer(jiraServer)).toList();
+        users.forEach(x -> System.out.println( "USER : "+ x.getAccountId() +"  "+ x.getEmailAddress()));
         users.forEach(jiraUserService::saveIfNotExistsOrUpdate);
     }
 

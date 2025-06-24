@@ -32,16 +32,18 @@ export class ProjectPageComponent implements OnInit {
   sortDirection: 'asc' | 'desc' = 'asc';
 
   composite: string = '';
+  projectId : number = 0;
+  key :string ='';
 
-  ngOnInit(): void {
+  loadData(): void {
     this.route.paramMap.subscribe(params => {
       const composite = params.get('composite');
       if (composite) {
         this.composite = composite;
-        const [key, projectIdStr] = composite.split('_');
-        const projectId = Number(projectIdStr);
-
-        this.jiraProjectService.getJiraProjectByKey(projectId, key).subscribe({
+        let projectIdStr : string;
+        [this.key, projectIdStr] = composite.split('_');
+        this.projectId = Number(projectIdStr);
+        this.jiraProjectService.getJiraProjectByKey(this.projectId, this.key).subscribe({
           next: data => {
             this.project = data;
             this.applyFilterAndSort();
@@ -49,6 +51,20 @@ export class ProjectPageComponent implements OnInit {
           error: err => console.error('Load failed:', err)
         });
       }
+    });
+  }
+
+  ngOnInit(): void {
+    this.loadData();
+    this.updateJiraProjects();
+  }
+
+  updateJiraProjects(): void {
+    this.jiraProjectService.updateJiraProjectByKey(this.projectId, this.key).subscribe({
+      next: (value) => {
+        this.loadData();
+      },
+      error: err => console.error('Failed to update projects', err)
     });
   }
 

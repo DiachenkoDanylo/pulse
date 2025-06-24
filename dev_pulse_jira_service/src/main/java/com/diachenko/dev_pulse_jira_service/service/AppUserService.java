@@ -58,7 +58,7 @@ public class AppUserService {
         dto.setJiraEmail(appUser.getJiraEmail());
 
         // Мапимо generalProjectList
-        List<JiraServerDto> generalProjectDtos = appUser.getGeneralProjectList().stream()
+        List<JiraServerDto> generalProjectDtos = appUser.getJiraServerList().stream()
                 .map(gp -> {
                     JiraServerDto gpDto = modelMapper.map(gp, JiraServerDto.class);
 
@@ -71,7 +71,7 @@ public class AppUserService {
                 })
                 .collect(Collectors.toList());
 
-        dto.setGeneralProjectList(generalProjectDtos);
+        dto.setJiraServerList(generalProjectDtos);
         return dto;
     }
 

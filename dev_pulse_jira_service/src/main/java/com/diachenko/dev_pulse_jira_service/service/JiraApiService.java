@@ -20,10 +20,11 @@ import org.springframework.web.client.RestTemplate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class JiraClientService {
+public class JiraApiService {
 
     private static final String TOKEN_URL = "https://auth.atlassian.com/oauth/token";
     private final RestTemplate restTemplate;
@@ -125,6 +126,8 @@ public class JiraClientService {
         if (body instanceof Map<?, ?> originalMap) {
             @SuppressWarnings("unchecked")
             Map<String, String> newBody = new HashMap<>((Map<String, String>) originalMap);
+            System.out.println("CLIENT ID : " + clientId);
+            System.out.println("CLIENT SECRET : "+ secret);
             newBody.put("client_id", clientId);
             newBody.put("client_secret", secret);
             return new HttpEntity<>((T) newBody, headers);

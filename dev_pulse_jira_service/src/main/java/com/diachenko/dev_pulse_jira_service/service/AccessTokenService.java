@@ -27,7 +27,7 @@ public class AccessTokenService {
     private final JiraRefreshTokenRepository jiraRefreshTokenRepository;
     private final AccessTokenRepository accessTokenRepository;
     private final JiraServerService projectService;
-    private final JiraClientService jiraClientService;
+    private final JiraApiService jiraClientService;
 
     @Value("${jira.api.redirect}")
     private String redirectUrl;
@@ -50,8 +50,8 @@ public class AccessTokenService {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
+        requestBody.values().forEach(x-> System.out.println("VALUE : "+x.toString()));
         ResponseEntity<JiraTokenResponse> response = jiraClientService.makeRequestToken("code",requestBody,headers,JiraTokenResponse.class);
-        System.out.println(response.toString());
 
         if (response.getStatusCode().is2xxSuccessful()) {
             JiraAccessToken accessToken = new JiraAccessToken();

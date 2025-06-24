@@ -17,14 +17,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RequestMapping("/project")
 @RestController
 @RequiredArgsConstructor
-public class ProjectController {
+public class ServerController {
 
     private final JiraServerService jiraServerService;
     private final JiraService jiraApiService;
@@ -33,17 +34,24 @@ public class ProjectController {
     private final JiraService jiraService;
 
     @GetMapping("/")
-    public ResponseEntity<?> allJiraServer(Authentication principal) {
+    public ResponseEntity<?> allJiraServer(Authentication principal,
+                                           @RequestParam(name = "update", required = false, defaultValue = "false") Boolean update) {
         AppUser appUser = appUserService.findByEmail(principal.getName());
-        List<JiraServerDto> server = jiraServerService.findByUserId(appUser.getId());
-        for (JiraServerDto dto : server) {
-            jiraService.fetchAndSaveJiraUsers(dto.getId());
-            jiraService.fetchAndSaveJiraProjects(dto.getId());
+        Long start = LocalDateTime.now().toLocalTime().toNanoOfDay();
+        if (update != null && update.equals(Boolean.TRUE)) {
+            List<JiraServerDto> server = jiraServerService.findByUserId(appUser.getId());
+            for (JiraServerDto dto : server) {
+                jiraService.fetchAndSaveJiraUsers(dto.getId());
+                jiraService.fetchAndSaveJiraProjects(dto.getId());
+            }
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Updated successfully");
+            return ResponseEntity.ok(response);
         }
-        if (appUser != null) {
-            return ResponseEntity.ok(jiraServerService.findByUserId(appUser.getId()));
-        }
-        return ResponseEntity.of(Optional.empty());
+        Long end = LocalDateTime.now().toLocalTime().toNanoOfDay();
+        long time = end - start;
+        System.out.println("Controller time method in milsec : " + time / 1_000);
+        return ResponseEntity.ok(jiraServerService.findByUserId(appUser.getId()));
     }
 
     @GetMapping("/{id}")

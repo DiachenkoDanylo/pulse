@@ -1,17 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 
 @Component({
-  selector: 'app-jira-callback',
+  selector: 'app-github-callback',
   standalone: true,
   imports: [],
-  templateUrl: './jira-callback.component.html',
-  styleUrl: './jira-callback.component.scss'
+  templateUrl: './github-callback.component.html',
+  styleUrl: './github-callback.component.scss'
 })
-export class JiraCallbackComponent implements OnInit {
+export class GithubCallbackComponent implements OnInit {
 
-  baseApiUrl = 'http://localhost:8080'
+  private apiUrl = environment.gitApiUrl;
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
@@ -21,12 +22,12 @@ export class JiraCallbackComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       const code = params['code'];
-      const state = params['state'];
 
-      if (code && state) {
-        this.http.post(`${this.baseApiUrl}/oauth/jira/code`, {
-          code,
-          state
+      console.log(code)
+      if (code ) {
+        this.http.post(`${this.apiUrl}oauth/github/code`, {
+          code
+          // state
         }).subscribe({
           next: () => {
             this.router.navigate(['/projects']); // або будь-який маршрут

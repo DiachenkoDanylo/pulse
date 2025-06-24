@@ -14,6 +14,7 @@ public class JiraServerDto {
     private Long id;
     private String name;
     private String projectUrl;
+    private String projectCloudId;
     private List<JiraProjectDto> jiraProjectListDto = new ArrayList<>();
 
 }

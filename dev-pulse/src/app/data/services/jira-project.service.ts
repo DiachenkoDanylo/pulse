@@ -1,6 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {JiraProject} from '../interfaces/jira-project.interface';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +9,16 @@ import {JiraProject} from '../interfaces/jira-project.interface';
 export class JiraProjectService {
 
   http = inject(HttpClient)
+  private apiUrl = environment.jiraApiUrl;
 
-  baseApiUrl = 'http://localhost:8080/'
+  baseApiUrl = this.apiUrl;
 
   getJiraProjectByKey(projectId: number, key: string) {
     return this.http.get<JiraProject>(`${this.baseApiUrl}project-jira/${projectId}/${key}`);
+  }
+
+  updateJiraProjectByKey(projectId: number, key: string) {
+    return this.http.get<JiraProject>(`${this.baseApiUrl}project-jira/${projectId}/${key}?update=true`);
   }
 
   constructor() { }

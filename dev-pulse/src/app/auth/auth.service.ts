@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {catchError, filter, map, Observable, Subject, take, tap, throwError} from 'rxjs';
 import {TokenResponse} from './auth.interface';
 import {CookieService} from 'ngx-cookie-service';
-
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,10 @@ import {CookieService} from 'ngx-cookie-service';
 export class AuthService {
 
   http = inject(HttpClient)
-  baseApiUrl = 'http://localhost:8080/auth/'
+
+  private apiUrl = environment.jiraApiUrl;
+
+  baseApiUrl = this.apiUrl +'auth/';
   cookieService = inject(CookieService)
 
   get isAuth(): boolean {
@@ -59,8 +62,8 @@ export class AuthService {
   login(payload: { username: string, password: string }) {
     return this.http.post<TokenResponse>(`${this.baseApiUrl}login`, payload, {withCredentials: true}).pipe(
       tap(value => {
-        this.cookieService.set('token', value.access_token, { sameSite: 'Lax', secure: true, path: '/', domain: 'localhost' });
-        this.cookieService.set('refreshToken', value.refresh_token, { sameSite: 'Lax', secure: true, path: '/', domain: 'localhost' });
+        this.cookieService.set('token', value.access_token, { sameSite: 'Lax', secure: true, path: '/'});
+        this.cookieService.set('refreshToken', value.refresh_token, { sameSite: 'Lax', secure: true, path: '/'});
       })
     );
   }

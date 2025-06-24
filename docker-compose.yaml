@@ -5,8 +5,9 @@ volumes:
     driver: local
 
 services:
-
   database:
+    env_file:
+      - .env
     restart: always
     image: postgres:13
     environment:
@@ -17,17 +18,37 @@ services:
       - ./pgdata:/var/lib/postgresql/data
     ports:
       - '5433:5432'
+    networks:
+      - app-network
+
+
+#  database-git:
+#    env_file:
+#      - .env
+#    restart: always
+#    image: postgres:13
+#    environment:
+#      POSTGRES_USER: ${DB_USER_GIT}
+#      POSTGRES_PASSWORD: ${DB_PASSWORD_GIT}
+#      POSTGRES_DB: ${DB_NAME_GIT}
+#    volumes:
+#      - ./pgdata-git:/var/lib/postgresql/data
+#    ports:
+#      - '5533:5432'
 
   backend-jira:
     env_file:
       - .env
     restart: always
     build:
+      context: .
       dockerfile: dev_pulse_jira_service/Dockerfile
       args:
         JAR_FILE: dev_pulse_jira_service/target/dev_pulse_jira_service-1.0-SNAPSHOT-exec.jar
     ports:
       - '8080:8080'
+    networks:
+      - app-network
 
   frontend-angular:
     build:
@@ -36,3 +57,9 @@ services:
     ports:
       - '4200:80'  # зовнішній порт 4200 -> nginx порт 80
     restart: always
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

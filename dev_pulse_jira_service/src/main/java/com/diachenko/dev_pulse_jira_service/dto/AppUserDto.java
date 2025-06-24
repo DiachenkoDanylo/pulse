@@ -17,6 +17,6 @@ public class AppUserDto {
     private String jiraEmail;
     private String firstName;
     private String lastName;
-    private List<JiraServerDto> generalProjectList = new ArrayList<>();
+    private List<JiraServerDto> jiraServerList = new ArrayList<>();
 
 }

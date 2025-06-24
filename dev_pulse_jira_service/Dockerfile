@@ -1,12 +1,12 @@
 # Stage 1: Build the application with Maven
-FROM maven:3.8.6-openjdk-17 AS build
+FROM maven:3.8.5-openjdk-17 AS build
 
 WORKDIR /app
 
 # Copy pom.xml and source code
-COPY pom.xml .
-COPY src ./src
-
+#COPY pom.xml .
+#COPY src ./src
+COPY . .
 # Package the application (without tests)
 RUN mvn clean package -DskipTests
 
@@ -17,7 +17,9 @@ ARG JAR_FILE=target/*.jar
 WORKDIR /build
 
 # Copy the built jar file
-ADD ${JAR_FILE} application.jar
+#ADD ${JAR_FILE} application.jar
+COPY --from=build /app/${JAR_FILE} application.jar
+
 
 # Extract layers for Spring Boot optimized startup
 RUN java -Djarmode=layertools -jar application.jar extract --destination extracted

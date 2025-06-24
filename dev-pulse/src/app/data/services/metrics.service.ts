@@ -1,5 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,9 @@ export class MetricsService {
 
 
   http = inject(HttpClient)
+  private apiUrl = environment.jiraApiUrl;
 
-  baseApiUrl = 'http://localhost:8080/metrics'
+  baseApiUrl = this.apiUrl+ 'metrics'
 
   getTasksFromUser(id: number, key: string) {
     return this.http.get<Record<string, number>>(`${this.baseApiUrl}/${id}/${key}/tasks-per-user`)

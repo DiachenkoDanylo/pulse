@@ -1,5 +1,11 @@
 <div class="wrapper">
-  <H1>Projects</H1>
+  <div class="wrapper_name">
+    <H1>Jira Servers</H1>
+    <button (click)="updateProjects()" class="refresh-btn">
+      <img src="/images/refresh-icon.png">
+      <!--    Update-->
+    </button>
+  </div>
   <div class="project-wrapper">
     @for (project of projects; track project.id) {
       <div class="project-card">

@@ -12,9 +12,7 @@
     <modules>
         <module>dev_pulse_jira_service</module>
         <module>dev_pulse_github_service</module>
-
     </modules>
-
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>

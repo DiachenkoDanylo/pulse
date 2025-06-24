@@ -48,12 +48,8 @@ public class AuthController {
             String refresh = jwtService.generateToken(user, JwtService.TokenType.REFRESH);
 
             return ResponseEntity.ok(new AppTokenResponse(token, refresh));
-        }catch (AuthenticationException e) {
+        } catch (AuthenticationException e) {
             return ResponseEntity.status(HttpServletResponse.SC_UNAUTHORIZED).body("User Not Found");
-
-//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-//            response.getWriter().write("Access token expired");
-//            return;
         }
     }
 

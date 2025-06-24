@@ -4,9 +4,29 @@
   padding-left: 5%;
   padding-right: 5%;
 }
-.wrapper h1 {
-  text-align: center;
+
+.wrapper_name {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
 }
+
+.refresh-btn {
+  align-self: center;
+  border-radius: 5px;
+  border: 2px black;
+  height: 45px;
+  width: 45px;
+  background-color: #89b8ff;
+  cursor: pointer;
+}
+
+.refresh-btn img {
+  //height: 100%;
+  width: 100%;
+
+}
+
 
 .issue-wrapper {
   display: grid;

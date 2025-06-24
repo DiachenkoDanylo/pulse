@@ -1,6 +1,11 @@
 <div class="wrapper">
-  <h1>{{ project?.name }}</h1>
-
+  <div class="wrapper_name">
+    <h1>{{ project?.name }}</h1>
+    <button (click)="updateJiraProjects()" class="refresh-btn">
+      <img src="/images/refresh-icon.png">
+      <!--    Update-->
+    </button>
+  </div>
   <div class="controls">
     <input
       type="text"
@@ -21,7 +26,7 @@
   </div>
   <div class="issue-wrapper">
     <div class="issue-card" *ngFor="let issue of filteredIssues; trackBy: trackByIssue"
-         [routerLink]="['/projects', composite, issue.id]">
+         [routerLink]="['/projects', composite, 'issue', issue.id]">
       <div class="issue-header">
         <span class="issue-key">{{ issue.key }}</span>
         <span class="issue-type">{{ issue.type }}</span>
